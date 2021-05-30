@@ -32,7 +32,6 @@ optimizer = base_optimizer(model.parameters(), lr=3e-4)
 
 for input, target in data:
 
-  # first forward-backward pass
   pred = YourModel(input)
   loss = F.cross_entropy(pred, target, reduction='none')  # loss to minimize
   filtering_score = F.mse_loss(F.softmax(pred, dim=1), F.one_hot(target, num_classes=10), reduction='none') # get individual loss-layer gradient norm. The loss layer gradient norm for cross entropy is the MSE loss.
