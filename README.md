@@ -5,18 +5,19 @@ This is the official implementation of the paper: Learning Deep Neural Networks 
 
 ## Paper Abstract
 Training deep neural models in the presence of corrupted supervision is challenging as the corrupted data points may significantly impact the generalization performance.
-To alleviate this problem, we present an efficient robust algorithm that achieves strong guarantees without any assumption on the type of corruption, and provides a unified framework for both classification and regression problems. Unlike many existing approaches that quantify the quality of the data points (e.g., based on their individual loss values), and filter them accordingly, 
+To alleviate this problem, we present an efficient robust algorithm that achieves strong guarantees without any assumption on the type of corruption and provides a unified framework for both classification and regression problems. Unlike many existing approaches that quantify the quality of the data points (e.g., based on their individual loss values), and filter them accordingly, 
 the proposed algorithm focuses on controlling the collective impact of data points on the average gradient. 
 Even when a corrupted data point failed to be excluded by our algorithm, the data point will have very limited impact on the overall loss, as compared with state-of-the-art filtering methods 
 based on loss values. Extensive experiments on multiple benchmark datasets have demonstrated the robustness of our algorithm under different types of corruptions.
 
 
 <br>
+
 ## Usage
 
 It should be very easy to use our algorithm in your training pipeline if you think your training data contains corrupted supervision. 
-Just for every update, first calculate the loss-layer gradient norm and throw data with large loss gradient norm, only using remaining data to perform gradient descent.
-We provide a classification example with cross entropy loss below: 
+Just for every update, first, calculate the loss-layer gradient norm and throw data with large loss gradient norm, only using the remaining data to perform gradient descent.
+We provide a classification example with cross-entropy loss below: 
 
 ```python
 from model import YourModel
@@ -44,10 +45,10 @@ for input, target in data:
 ...
 ```
 
-Usually, above code will bring robustness against supervision corruption. However, if it fails, you may want to consider below tricks if you find our algorithm failed to defense the supervision corruptions.
-> try overestimate the corruption ratio and increase your batch size. 
+Usually, the above code will bring robustness against supervision corruption. However, if it fails, you may want to consider the below tricks if you find our algorithm failed to defense the supervision corruptions.
+> try to overestimate the corruption ratio and increase your batch size. 
 >
-> When using the our code for regression, if your supervision value has extremely long tail, try remove the tail part first.
+> When using our code for regression, if your supervision value has an extremely long tail, try to remove the tail part first.
 
 Also, you can add components such as mix-up (add mix-up on selected samples in each minibatch) to our algorithm to further boost the performance.
 
@@ -56,7 +57,7 @@ Also, you can add components such as mix-up (add mix-up on selected samples in e
 
 ## Our Implementation
 Our code is based on the official implementation of [co-teaching](https://github.com/bhanML/Co-teaching). In their code, no data augmentation is used and the backbone network is a single 9-layer CNN. You can change the network to resnet and add standard data augmentation(i.e. crop, horizontal flip) and [mixup](https://arxiv.org/abs/1710.09412) to boost performance.
-We did not include those technique in our experiment since we want to focus on the effect of the filtering step.
+We did not include those techniques in our experiment since we want to focus on the effect of the filtering step.
 
 
 dependency:
@@ -90,5 +91,5 @@ Run PRL-G in cifar10 with 45% pairflipping label noise using resnet32 with group
 
 ## Acknowledgements
 This research is funded by NSF-IIS 2006633, EF1638679, NSF-IIS-1749940, Office of Naval Research N00014-20-1-2382, National Institue on Aging RF1AG072449.
-Our backbone code is based on [co-teaching](https://github.com/bhanML/Co-teaching). For the PRL-G, we use the [opacus](https://github.com/pytorch/opacus) to calculate individual gradient.
+Our backbone code is based on [co-teaching](https://github.com/bhanML/Co-teaching). For the PRL-G, we use the [opacus](https://github.com/pytorch/opacus) to calculate the individual gradient.
 
