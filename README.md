@@ -1,9 +1,9 @@
-# Learning-Deep-Neural-Networks-under-Agnostic-Corrupted-Supervision
+# Learning Deep Neural Networks under Agnostic Corrupted Supervision
 This is the official implementation of the paper: Learning Deep Neural Networks under Agnostic Corrupted Supervision
 
 <br>
 
-## Paper Abstract
+## Abstract
 Training deep neural models in the presence of corrupted supervision is challenging as the corrupted data points may significantly impact the generalization performance.
 To alleviate this problem, we present an efficient robust algorithm that achieves strong guarantees without any assumption on the type of corruption and provides a unified framework for both classification and regression problems. Unlike many existing approaches that quantify the quality of the data points (e.g., based on their individual loss values), and filter them accordingly, 
 the proposed algorithm focuses on controlling the collective impact of data points on the average gradient. 
@@ -89,6 +89,6 @@ Run PRL-G in cifar10 with 45% pairflipping label noise using resnet32 with group
 <br>
 
 ## Acknowledgements
-This research is funded by NSF-IIS 2006633, EF1638679, NSF-IIS-1749940, Office of Naval Research N00014-20-1-2382, National Institue on Aging RF1AG072449.
+This research is funded by NSF IIS-2006633, EF-1638679, IIS-1749940, Office of Naval Research N00014-20-1-2382, National Institue on Aging RF1AG072449.
 Our backbone code is based on [co-teaching](https://github.com/bhanML/Co-teaching). For the PRL-G, we use the [opacus](https://github.com/pytorch/opacus) to calculate the individual gradient.
 
