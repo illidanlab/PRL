@@ -1,5 +1,5 @@
 # Learning Deep Neural Networks under Agnostic Corrupted Supervision
-This is the official implementation of the paper: Learning Deep Neural Networks under Agnostic Corrupted Supervision
+This is the official implementation of the paper:[Learning Deep Neural Networks under Agnostic Corrupted Supervision](http://proceedings.mlr.press/v139/liu21v/liu21v.pdf)
 
 <br>
 
